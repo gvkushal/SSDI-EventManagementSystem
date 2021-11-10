@@ -24,7 +24,7 @@ const ViewEvent = () => {
 
       return (
         <div className="container">
-          <Link className="btn btn-primary" to="/admin">
+          <Link className="btn btn-primary" to="/Dashboard">
             back to Home
           </Link>
           <hr />
