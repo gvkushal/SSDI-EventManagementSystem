@@ -1,0 +1,113 @@
+{
+  "getevents": [
+    {
+      "eventName": "Library events",
+      "description": "events for library",
+      "eventStartTime": "Center",
+      "eventEndTime": "Place",
+      "location": "UNCC Library",
+      "id": 1
+    },
+    {
+      "eventName": "Student Events",
+      "description": "event desc",
+      "eventStartTime": "Point",
+      "eventEndTime": "Park",
+      "location": "Student Union",
+      "id": 2
+    },
+    {
+      "eventName": "Chemical Engineer111",
+      "description": "Rheumatoid nodule",
+      "eventStartTime": "Place",
+      "eventEndTime": "Way",
+      "location": "Verna",
+      "id": 3
+    },
+    {
+      "id": 4,
+      "eventId": 4,
+      "eventName": "Marketing Manager",
+      "description": "Other specified joint disorders, unspecified shoulder",
+      "hosts": "Milissent",
+      "eventStartTime": "Pass",
+      "eventEndTime": "Street",
+      "capactiy": "116.222.35.16",
+      "venue": "Philippa",
+      "venuePincode": 4,
+      "createdBy": "Delainey",
+      "eventPointOfCotactEmail": "mharlowe3@msu.edu",
+      "location": "Mercy"
+    },
+    {
+      "id": 5,
+      "eventId": 5,
+      "eventName": "Professor",
+      "description": "Partial traumatic amputation of right midfoot",
+      "hosts": "Fanchette",
+      "eventStartTime": "Terrace",
+      "eventEndTime": "Hill",
+      "capactiy": "168.240.107.127",
+      "venue": "Michail",
+      "venuePincode": 5,
+      "createdBy": "Nanete",
+      "eventPointOfCotactEmail": "fwasylkiewicz4@aboutads.info",
+      "location": "Adriana"
+    },
+    {
+      "id": 6,
+      "eventId": 6,
+      "eventName": "Pharmacist",
+      "description": "Person outside bus inj in nonclsn trnsp acc nontraf, init",
+      "hosts": "Danice",
+      "eventStartTime": "Junction",
+      "eventEndTime": "Alley",
+      "capactiy": "202.81.211.143",
+      "venue": "Phillipp",
+      "venuePincode": 6,
+      "createdBy": "Bibi",
+      "eventPointOfCotactEmail": "dkleewein5@ustream.tv",
+      "location": "Malva"
+    },
+    {
+      "id": 7,
+      "eventId": 7,
+      "eventName": "Electrical Engineer",
+      "description": "Embolism and thrombosis of iliac artery",
+      "hosts": "Phaidra",
+      "eventStartTime": "Trail",
+      "eventEndTime": "Park",
+      "capactiy": "172.208.133.166",
+      "venue": "Bax",
+      "venuePincode": 7,
+      "createdBy": "Ezekiel",
+      "eventPointOfCotactEmail": "pcarress6@si.edu",
+      "location": "Shirley"
+    },
+    {
+      "eventName": "Electrical Engineer",
+      "description": "testttt",
+      "eventStartTime": "Center",
+      "eventEndTime": "Parkway",
+      "location": "Riobard",
+      "id": 8
+    },
+    {
+      "eventName": "Software Consultant",
+      "description": "test",
+      "eventStartTime": "Hill",
+      "eventEndTime": "Park",
+      "location": "Agata",
+      "id": 9
+    },
+    {
+      "eventId": "1234",
+      "eventName": "Halloween ",
+      "description": "Party",
+      "eventStartTime": "12",
+      "eventEndTime": "13",
+      "location": "Charlotte, NC",
+      "id": 10
+    }
+  ]
+}
