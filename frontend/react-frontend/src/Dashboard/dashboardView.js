@@ -3,9 +3,9 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 
-const ViewEvent = () => {
+const DashboardView = () => {
     //const view_event_url = "http://localhost:3004/getevents";
-    const [viewEvent, setViewEvent] = useState({
+    const [dashboardView, setDashboardView] = useState({
         eventId: "",
         eventName: "",
         description: "",
@@ -19,22 +19,22 @@ const ViewEvent = () => {
       }, []);
       const loadEvent = async () => {
         const res = await axios.get(`http://localhost:3004/getevents/${id}`);
-        setViewEvent(res.data);
+        setDashboardView(res.data);
       };
 
       return (
         <div className="container">
-          <Link className="btn btn-primary" to="/admin">
+          <Link className="btn btn-primary" to="/Dashboard">
             back to Home
           </Link>
           <hr />
           <ul className="list-group">
-            <li className="list-group-item active">Event id : {viewEvent.id}</li>
-            <li className="list-group-item">Event Name: {viewEvent.eventName}</li>
-            <li className="list-group-item">Description: {viewEvent.description}</li>
-            <li className="list-group-item">Location: {viewEvent.location}</li>
-            <li className="list-group-item">Start Date: {viewEvent.eventStartTime}</li>
-            <li className="list-group-item">End Date: {viewEvent.eventEndTime}</li>
+            <li className="list-group-item active">Event id : {dashboardView.id}</li>
+            <li className="list-group-item">Event Name: {dashboardView.eventName}</li>
+            <li className="list-group-item">Description: {dashboardView.description}</li>
+            <li className="list-group-item">Location: {dashboardView.location}</li>
+            <li className="list-group-item">Start Date: {dashboardView.eventStartTime}</li>
+            <li className="list-group-item">End Date: {dashboardView.eventEndTime}</li>
           </ul>
          
         </div>
@@ -42,4 +42,4 @@ const ViewEvent = () => {
       );
 }
 
-export default ViewEvent;
+export default DashboardView;

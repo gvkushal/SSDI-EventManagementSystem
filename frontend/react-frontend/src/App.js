@@ -17,6 +17,7 @@ import UpdateEvent from './admin/component/updateEvent';
 import DeleteEvent from './admin/component/deleteEvent';
 import Dashboard from './Dashboard/dashboard';
 import Rsvp from './admin/component/Rsvp';
+import DashboardView from './Dashboard/dashboardView';
 
 function App() {
   return (<Router>
@@ -34,6 +35,7 @@ function App() {
         <Route path="/admin/view-event/:id" component={ViewEvent} />
         <Route path="/admin/update-event/:id" component={UpdateEvent} />
         <Route path="/admin/delete-event/:id" component={DeleteEvent} />
+        <Route path="/Dashboard/dashboardView/:id" component={DashboardView} />
         <Route path="/admin/rsvp/:id" component={Rsvp} />
         <Route exact path="/reset-password" component={ResetPassword}/>
 

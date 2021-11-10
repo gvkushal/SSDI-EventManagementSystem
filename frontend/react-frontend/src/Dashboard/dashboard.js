@@ -64,7 +64,7 @@ const Dashboard = () => {
                                     <td>{evnt.eventStartTime}</td>
                                     <td>{evnt.eventEndTime}</td>
                                     <td>
-                                        <Link className="btn btn-primary btn-sm" to={`/admin/view-event/${evnt.id}`}>View</Link>
+                                        <Link className="btn btn-primary btn-sm" to={`/Dashboard/dashboardView/${evnt.id}`}>View</Link>
                                         <Link className="btn btn-outline-primary btn-sm" to={`/admin/rsvp/${evnt.id}`}>RSVP</Link> 
                                     </td>
                                 </tr>
