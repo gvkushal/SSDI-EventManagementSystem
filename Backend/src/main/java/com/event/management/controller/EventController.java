@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,9 +43,14 @@ public class EventController {
 
 	@PostMapping("/add")
 	@ApiOperation(value = "Add a new Event")
-	//@ApiImplicitParam(name = "event", value = "request", required = true, dataType = "Event")
 	public Event addEvent(@RequestBody Event event) {
 		return eventService.addEvent(event);
+	}
+
+	@PutMapping("/update")
+	@ApiOperation(value = "Update an existing event")
+	public Event updateEvent(@RequestBody Event event) {
+		return null;
 	}
 
 	@DeleteMapping("/delete/{eventId}")

@@ -22,12 +22,12 @@ public class Comment {
 	private int commentId;
 	
 	@ManyToOne
-	@MapsId("userId")
+//	@MapsId("userId")
 	@JoinColumn(name = "user_id")
 	private Users users;
 
 	@ManyToOne
-	@MapsId("eventId")
+//	@MapsId("eventId")
 	@JoinColumn(name = "event_id")
 	private Event event;
 	

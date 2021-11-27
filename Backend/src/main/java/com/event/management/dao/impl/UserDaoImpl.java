@@ -1,5 +1,7 @@
 package com.event.management.dao.impl;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +42,13 @@ public class UserDaoImpl implements UsersDao {
 		}
 		existing.setPassword(password);
 		return "Successfully updated the password";
+	}
+	
+	@Override
+	public Users getUserById(int usersId) {
+		Optional<Users> userOpt = repository.findById(usersId);
+		if (!userOpt.isPresent())
+			throw new InvalidInputException("User: "+usersId+"does not exist");
+		return userOpt.get();
 	}
 }

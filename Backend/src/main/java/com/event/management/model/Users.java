@@ -29,9 +29,6 @@ public class Users {
 	@Column(name = "last_name")
 	private String lastName;
 
-	@Column(name = "age")
-	private int age;
-
 	@Column(name = "password", nullable = false)
 	private String password;
 
@@ -40,22 +37,10 @@ public class Users {
 
 	@Column(name = "phone")
 	private String phone;
-	
-	
 
-	/*
-	 * @ManyToMany(cascade = CascadeType.ALL)
-	 * 
-	 * @JoinTable(name = )
-	 * 
-	 * @JoinTable(name = "auth_user_role", joinColumns = {@JoinColumn(name =
-	 * "auth_user_id")}, inverseJoinColumns = {@JoinColumn(name =
-	 * "auth_role_id")} ) private Set<Roles> roles;
-	 */
-
-	@JsonIgnore
+	/*@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "users")
-	Set<Registration> registrations = new HashSet<>();
+	Set<Registration> registrations = new HashSet<>();*/
 
 	@JsonIgnore
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "users")
@@ -83,14 +68,6 @@ public class Users {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
 	}
 
 	public String getPassword() {

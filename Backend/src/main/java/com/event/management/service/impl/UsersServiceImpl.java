@@ -39,4 +39,11 @@ public class UsersServiceImpl implements UsersService {
 		}
 		return usersDao.updatePassword(email, password);
 	}
+
+	@Override
+	public Users getUserById(int usersId) {
+		if (usersId <= 0)
+			throw new InvalidInputException("Please insert Valid userId");
+		return usersDao.getUserById(usersId);
+	}
 }

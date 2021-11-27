@@ -43,7 +43,7 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public Event addEvent(Event event) {
-		if (event == null /*|| event.getEventStartTime() == null || event.getEventEndTime() == null*/)
+		if (event == null || event.getStartTime() == null || event.getEndTime() == null)
 			throw new InvalidInputException("Please provide valid event data");
 		return eventDao.addEvent(event);
 
