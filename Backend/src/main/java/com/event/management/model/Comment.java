@@ -12,6 +12,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity(name = "comment")
 @Table(name="comment")
 public class Comment {
@@ -22,22 +27,24 @@ public class Comment {
 	private int commentId;
 	
 	@ManyToOne
-//	@MapsId("userId")
 	@JoinColumn(name = "user_id")
 	private Users users;
 
 	@ManyToOne
-//	@MapsId("eventId")
 	@JoinColumn(name = "event_id")
 	private Event event;
 	
 	@Column(name = "comment", nullable = false)
 	private String comment;
 
-	@Column(name = "created_on", nullable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
+	@Column(name = "created_on")
+	@CreationTimestamp
 	private LocalDateTime createdOn;
 
-	@Column(name = "updated_on", nullable = false, columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
+	@Column(name = "updated_on")
+	@UpdateTimestamp
 	private LocalDateTime updatedOn;
 
 	public int getCommentId() {
