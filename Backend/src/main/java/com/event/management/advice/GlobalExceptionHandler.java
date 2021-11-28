@@ -18,4 +18,8 @@ public class GlobalExceptionHandler{
 		return new ResponseEntity<String>(invalid.getMessage(), HttpStatus.BAD_REQUEST);
 	}
 	
+	@ExceptionHandler(value = EMSException.class)
+	public ResponseEntity<String> handleEMSException(EMSException input) {
+		return new ResponseEntity<String>(input.getMessage(),HttpStatus.OK);
+	}
 }

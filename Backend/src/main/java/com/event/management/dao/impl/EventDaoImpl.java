@@ -34,7 +34,7 @@ public class EventDaoImpl implements EventDao {
 	}
 
 	@Override
-	public Event addEvent(Event event) {
+	public Event addOrUpdateEvent(Event event) {
 
 		if (event.getCategory() == null || event.getCategory().getCategoryId() <= 0)
 			throw new InvalidInputException("Event Category is not valid. please add valid category");
@@ -42,14 +42,10 @@ public class EventDaoImpl implements EventDao {
 			throw new InvalidInputException("Category with category id : " + event.getCategory().getCategoryId()
 					+ " not exist. please provide valid inputs");
 		event.setCategory(categoryRepository.findById(event.getCategory().getCategoryId()).get());
-
+		if (event.getEventId() <= 0)
+			event.setRemainingCapacity(event.getCapactiy());
 		return repository.save(event);
 	}
-
-	/*
-	 * public Event updateEvent(Event event) { // if (event.getEventId() > 0) //
-	 * return repository. }
-	 */
 
 	@Override
 	public void deleteEvent(Event event) {

@@ -6,4 +6,6 @@ public interface RegistrationService {
 
 	Registration subscribeEvent(int eventId, int usersId);
 
+	Registration unSubscribeEvent(int registrationId);
+
 }

@@ -50,7 +50,7 @@ public class EventController {
 	@PutMapping("/update")
 	@ApiOperation(value = "Update an existing event")
 	public Event updateEvent(@RequestBody Event event) {
-		return null;
+		return eventService.updateEvent(event);
 	}
 
 	@DeleteMapping("/delete/{eventId}")

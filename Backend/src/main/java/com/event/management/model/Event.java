@@ -52,13 +52,6 @@ public class Event {
 	@Column(name = "capacity", nullable = false)
 	private int capactiy;
 
-	// @ApiModelProperty()
-	@Column(name = "venue")
-	private String venue;
-
-	@Column(name = "venue_pincode")
-	private int venuePincode;
-
 	@Column(name = "created_by", nullable = false)
 	private int createdBy;
 
@@ -69,9 +62,6 @@ public class Event {
 	private String location;
 
 	@ManyToOne(cascade = CascadeType.REMOVE)
-
-	// @MapsId("categoryId")
-
 	@JoinColumn(name = "category")
 	private Category category;
 
@@ -169,23 +159,7 @@ public class Event {
 	public void setCapactiy(int capactiy) {
 		this.capactiy = capactiy;
 	}
-
-	public String getVenue() {
-		return venue;
-	}
-
-	public void setVenue(String venue) {
-		this.venue = venue;
-	}
-
-	public int getVenuePincode() {
-		return venuePincode;
-	}
-
-	public void setVenuePincode(int venuePincode) {
-		this.venuePincode = venuePincode;
-	}
-
+	
 	public int getCreatedBy() {
 		return createdBy;
 	}

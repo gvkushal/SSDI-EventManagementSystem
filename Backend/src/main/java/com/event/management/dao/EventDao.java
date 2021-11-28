@@ -12,7 +12,7 @@ public interface EventDao {
 
 	Optional<Event> getEventById(int eventId);
 
-	Event addEvent(Event event);
+	Event addOrUpdateEvent(Event event);
 
 	void deleteEvent(Event event);
 

@@ -60,8 +60,8 @@ public class EventsServiceImplTest {
 	@Test
 	public void addEvent_happyflow() {
 		Event event = new Event();
-		Mockito.when(eventDao.addEvent(event)).thenReturn(event);
-		eventDao.addEvent(event);
+		Mockito.when(eventDao.addOrUpdateEvent(event)).thenReturn(event);
+		eventDao.addOrUpdateEvent(event);
 		Event added = eventService.addEvent(event);
 		assertEquals(added, event);
 	}

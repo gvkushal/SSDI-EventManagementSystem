@@ -1,5 +1,7 @@
 package com.event.management.dao.impl;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,19 +28,28 @@ public class RegistrationDaoImpl implements RegistrationDao {
 
 	@Override
 	public Registration subscribeEvent(int eventId, int usersId) {
-		Event event = eventService.getEventById(eventId);
-		if (event == null)
-			throw new InvalidInputException(eventId + " doesnot exist");
-		Users user = userService.getUserById(usersId);
-		if (user == null)
-			throw new InvalidInputException(usersId + " doesnot exist");
+
 		Registration registration = new Registration();
-		registration.setEvent(event);
-		registration.setUsers(user);
+		registration.setEvent(eventService.getEventById(eventId));
+		registration.setUsers(userService.getUserById(usersId));
 		repository.save(registration);
 		return registration;
-		
-		//catch already registered user and throw error msg
-		//check the cpacity and add accordingly.
+	}
+
+	@Override
+	public Registration unSubscribeEvent(Registration registration) {
+		return repository.save(registration);
+	}
+
+	@Override
+	public Registration getRegistration(int eventId, int usersId) {
+		return repository.getRegistration(eventId, usersId);
+	}
+
+	@Override
+	public Registration getRegistrationById(int registrationId) {
+		if(!repository.existsById(registrationId))
+			return null;
+		return repository.findById(registrationId).get();
 	}
 }
