@@ -10,4 +10,6 @@ public interface UsersService {
 
 	String updatePassword(String email, String password);
 
+	Users getUserById(int usersId);
+
 }

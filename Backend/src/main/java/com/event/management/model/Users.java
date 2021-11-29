@@ -1,18 +1,11 @@
 package com.event.management.model;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "users")
 @Table(name = "users")
@@ -29,9 +22,6 @@ public class Users {
 	@Column(name = "last_name")
 	private String lastName;
 
-	@Column(name = "age")
-	private int age;
-
 	@Column(name = "password", nullable = false)
 	private String password;
 
@@ -40,26 +30,20 @@ public class Users {
 
 	@Column(name = "phone")
 	private String phone;
-	
-	
 
 	/*
-	 * @ManyToMany(cascade = CascadeType.ALL)
+	 * @JsonIgnore
 	 * 
-	 * @JoinTable(name = )
-	 * 
-	 * @JoinTable(name = "auth_user_role", joinColumns = {@JoinColumn(name =
-	 * "auth_user_id")}, inverseJoinColumns = {@JoinColumn(name =
-	 * "auth_role_id")} ) private Set<Roles> roles;
+	 * @OneToMany(cascade = CascadeType.ALL, mappedBy = "users")
+	 * Set<Registration> registrations = new HashSet<>();
 	 */
 
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "users")
-	Set<Registration> registrations = new HashSet<>();
-
-	@JsonIgnore
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "users")
-	Set<Comment> comments = new HashSet<>();
+	/*
+	 * @JsonIgnore
+	 * 
+	 * @OneToMany(cascade = CascadeType.ALL, mappedBy = "users") Set<Comment>
+	 * comments = new HashSet<>();
+	 */
 
 	public int getUserId() {
 		return userId;
@@ -83,14 +67,6 @@ public class Users {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
 	}
 
 	public String getPassword() {
@@ -117,8 +93,9 @@ public class Users {
 		this.phone = phone;
 	}
 
-	public void setComments(Set<Comment> comments) {
-		this.comments = comments;
-	}
+	/*
+	 * public void setComments(Set<Comment> comments) { this.comments =
+	 * comments; }
+	 */
 
 }

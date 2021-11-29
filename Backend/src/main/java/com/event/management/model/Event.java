@@ -1,8 +1,6 @@
 package com.event.management.model;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,15 +9,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import io.swagger.annotations.ApiModelProperty;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity(name = "event")
 @Table(name = "event")
@@ -39,21 +35,16 @@ public class Event {
 	@Column(name = "hosts")
 	private String hosts;
 
-	@Column(name = "event_start_time", nullable = true)
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
+	@Column(name = "event_start_time", nullable = false)
 	private LocalDateTime startTime;
 
-	@Column(name = "event_end_time", nullable = true)
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
+	@Column(name = "event_end_time", nullable = false)
 	private LocalDateTime endTime;
 
 	@Column(name = "capacity", nullable = false)
 	private int capactiy;
-
-	//@ApiModelProperty()
-	@Column(name = "venue")
-	private String venue;
-
-	@Column(name = "venue_pincode")
-	private int venuePincode;
 
 	@Column(name = "created_by", nullable = false)
 	private int createdBy;
@@ -64,33 +55,48 @@ public class Event {
 	@Column(name = "locaiton")
 	private String location;
 
-	/*@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "category", referencedColumnName = "id")*/
-	private String category;
+	@ManyToOne(cascade = CascadeType.REMOVE)
+	@JoinColumn(name = "category")
+	private Category category;
+
+	/*
+	 * @Column(name = "category") private String category;
+	 */
 
 	@Column(name = "remaining_capacity", nullable = false)
 	private int remainingCapacity;
 
-	@Column(name = "created_on", columnDefinition="TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
+	@Column(name = "created_on")
+	@CreationTimestamp
 	private LocalDateTime createdOn;
 
-	@Column(name = "updated_on", columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP")
+	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
+	@Column(name = "updated_on")
+	@UpdateTimestamp
 	private LocalDateTime updatedOn;
 
-	@JsonIgnore
-	@OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE)
-	Set<Registration> registrations = new HashSet<>();
-	
-	@JsonIgnore
-	@OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE)
-	Set<Comment> comments = new HashSet<>();
+	/*
+	 * @JsonIgnore
+	 * 
+	 * @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE)
+	 * Set<Registration> registrations = new HashSet<>();
+	 */
+
+	/*
+	 * @JsonIgnore
+	 * 
+	 * @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE) Set<Comment>
+	 * comments = new HashSet<>()
+	 */;
 
 	@Column(name = "registration_link")
 	private String registrationLink;
-	
-	public void setRegistrations(Set<Registration> registrations) {
-		this.registrations = registrations;
-	}
+
+	/*
+	 * public void setRegistrations(Set<Registration> registrations) {
+	 * this.registrations = registrations; }
+	 */
 
 	public int getEventId() {
 		return eventId;
@@ -124,20 +130,20 @@ public class Event {
 		this.hosts = hosts;
 	}
 
-	public LocalDateTime getEventStartTime() {
+	public LocalDateTime getStartTime() {
 		return startTime;
 	}
 
-	public void setEventStartTime(LocalDateTime eventStartTime) {
-		this.startTime = eventStartTime;
+	public void setStartTime(LocalDateTime startTime) {
+		this.startTime = startTime;
 	}
 
-	public LocalDateTime getEventEndTime() {
+	public LocalDateTime getEndTime() {
 		return endTime;
 	}
 
-	public void setEventEndTime(LocalDateTime eventEndTime) {
-		this.endTime = eventEndTime;
+	public void setEndTime(LocalDateTime endTime) {
+		this.endTime = endTime;
 	}
 
 	public int getCapactiy() {
@@ -146,22 +152,6 @@ public class Event {
 
 	public void setCapactiy(int capactiy) {
 		this.capactiy = capactiy;
-	}
-
-	public String getVenue() {
-		return venue;
-	}
-
-	public void setVenue(String venue) {
-		this.venue = venue;
-	}
-
-	public int getVenuePincode() {
-		return venuePincode;
-	}
-
-	public void setVenuePincode(int venuePincode) {
-		this.venuePincode = venuePincode;
 	}
 
 	public int getCreatedBy() {
@@ -212,16 +202,25 @@ public class Event {
 		this.updatedOn = updatedOn;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(Category category) {
 		this.category = category;
 	}
 
-	public void setComments(Set<Comment> comments) {
-		this.comments = comments;
-	}
+	/*
+	 * public void setCategory(String category) { this.category = category; }
+	 */
+
+	/*
+	 * public void setComments(Set<Comment> comments) { this.comments =
+	 * comments; }
+	 */
 
 	public String getRegistrationLink() {
 		return registrationLink;
+	}
+
+	public Category getCategory() {
+		return category;
 	}
 
 	public void setRegistrationLink(String registrationLink) {

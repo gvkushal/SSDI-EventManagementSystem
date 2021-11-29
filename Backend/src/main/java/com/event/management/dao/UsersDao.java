@@ -9,4 +9,6 @@ public interface UsersDao{
 	Users getUserByEmail(String email);
 
 	String updatePassword(String email, String password);
+
+	Users getUserById(int usersId);
 }

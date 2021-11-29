@@ -43,9 +43,9 @@ public class EventServiceImpl implements EventService {
 
 	@Override
 	public Event addEvent(Event event) {
-		if (event == null /*|| event.getEventStartTime() == null || event.getEventEndTime() == null*/)
+		if (event == null || event.getStartTime() == null || event.getEndTime() == null)
 			throw new InvalidInputException("Please provide valid event data");
-		return eventDao.addEvent(event);
+		return eventDao.addOrUpdateEvent(event);
 
 	}
 
@@ -57,6 +57,28 @@ public class EventServiceImpl implements EventService {
 		if (!eventInfo.isPresent())
 			throw new InvalidInputException("No event with event id: " + eventId);
 		eventDao.deleteEvent(eventInfo.get());
+	}
+
+	@Override
+	public Event updateEvent(Event event) {
+		Optional<Event> existing = eventDao.getEventById(event.getEventId());
+		if (!existing.isPresent())
+			throw new InvalidInputException("No event with event id: " + event.getEventId());
+		if (existing.get().getCapactiy() != event.getCapactiy()) {
+			if (existing.get().getCapactiy() > event.getCapactiy()
+					&& event.getCapactiy() < event.getRemainingCapacity())
+				throw new InvalidInputException("Capacity of the " + event.getEventName()
+						+ " event cannot be reduced beyond remaining capacity");
+
+			if (existing.get().getCapactiy() < event.getCapactiy()) {
+				int diff = event.getCapactiy() - existing.get().getCapactiy();
+				event.setCapactiy(event.getCapactiy());
+				event.setRemainingCapacity(event.getRemainingCapacity() + diff);
+			}
+
+		}
+		return eventDao.addOrUpdateEvent(event);
+
 	}
 
 }
