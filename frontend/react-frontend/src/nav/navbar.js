@@ -13,6 +13,11 @@ const Navbar = () => {
           Admin
         </Link>
 
+        <Link to="/logout">
+          Logout
+        </Link>
+
+
       </div>
     </nav>
   );

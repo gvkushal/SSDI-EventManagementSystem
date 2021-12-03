@@ -18,6 +18,8 @@ import DeleteEvent from './admin/component/deleteEvent';
 import Dashboard from './Dashboard/dashboard';
 import Rsvp from './admin/component/Rsvp';
 import DashboardView from './Dashboard/dashboardView';
+import logout from './logout/logout';
+import Logout from './logout/logout';
 
 function App() {
   return (<Router>
@@ -28,6 +30,7 @@ function App() {
         <Route exact path='/Dashboard' component={Dashboard} />
         <Route exact path="/sign-in" component={SignIn} />
         <Route exact path="/sign-up" component={SignUp} />
+        <Route exact path='/logout' component={Logout} />
         <Route exact path="/thank-you" component={ThankYou} />
         <Route exact path="/Rsvp" component={Rsvp} />
         <Route exact path="/admin" component={Admin} />
