@@ -109,5 +109,9 @@
       "location": "Charlotte, NC",
       "id": 10
     }
-  ]
+  ],
+  "evntRsvp": {
+    "evntID": "1",
+    "evntRsvpSub": "n"
+  }
 }

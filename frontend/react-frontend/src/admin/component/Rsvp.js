@@ -1,9 +1,16 @@
 import React, { Component, useState } from "react";
+import axios from 'axios';
+
+import { useHistory, useParams,Link } from "react-router-dom";
+
 import '../../../src/screen.css';
 
 
 
 const Rsvp = () =>{
+  let history = useHistory();
+  const {id} = useParams();
+
   const [rsvp, setRsvp] = useState({
     yesChoice: "",
     noChoice: ""
@@ -21,15 +28,17 @@ const Rsvp = () =>{
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(rsvp);
-    // //axios.delete(`http://localhost:3004/getevents/${id}`).then(res => {
-    //     if (res.status = 200) {
-    //         history.push("/Dashboard");
-    //     }
+
+    axios.put(`http://localhost:3004/evntRsvp`, {
+      evntID: id,
+      evntRsvpSub: rsvp.yesChoice
+      
+  }).then(res => {
+      if (res.status = 200) {
+          history.push("/Dashboard");
+      }
+  });
     };
-
-
-
-
         return (
           <div className="container">
           <div className="auth-wrapper">

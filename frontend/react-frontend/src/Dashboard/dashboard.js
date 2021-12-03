@@ -6,14 +6,21 @@ import Navbar from '../nav/navbar';
 const Dashboard = () => {
     
   const get_all_events_url = 'http://localhost:3004/getevents';
+  const get_user_rsvp = 'http://localhost:3004/evntRsvp/';
   const [events, setEvents] = useState([]);
+  const [eventsRsvp, setEventsRsvp] = useState([]);
 
 
     useEffect(() => {
         loadAllEvents();
+        checkrsvp();
     }, []);
 
-
+const checkrsvp = async () =>{
+    const response = await axios.get(get_user_rsvp);
+    console.log(" das " +response.data.evntRsvpSub);
+    setEventsRsvp(response.data);
+}
     const loadAllEvents = async () => {
         const response = await axios.get(get_all_events_url);
         //console.log(response.data);
@@ -65,7 +72,10 @@ const Dashboard = () => {
                                     <td>{evnt.eventEndTime}</td>
                                     <td>
                                         <Link className="btn btn-primary btn-sm" to={`/Dashboard/dashboardView/${evnt.id}`}>View</Link>
-                                        <Link className="btn btn-outline-primary btn-sm" to={`/admin/rsvp/${evnt.id}`}>RSVP</Link> 
+                                      {
+                                         eventsRsvp.evntRsvpSub=='y' && eventsRsvp.evntID == evnt.id?  <Link className="btn btn-outline-primary btn-sm" to={`/admin/rsvp/${evnt.id}`}>Subscribed</Link> :  <Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.id}`}>RSVP</Link> 
+                                      }
+                                      
                                     </td>
                                 </tr>
                             ))
