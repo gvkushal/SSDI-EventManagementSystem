@@ -45,7 +45,7 @@ const Rsvp = () =>{
           <div className="auth-inner">
             <form>
               <p>Would you attend this event?</p>
-              <input type="text" placeholder="Y/N" name="yesChoice" value={rsvp.yesChoice} onChange={handleChange}/> Y/N
+              <input type="text" placeholder="y/n" name="yesChoice" value={rsvp.yesChoice} onChange={handleChange}/> Y/N
               <br/>
               <br/>
               <button type="submit" className="btn btn-primary btn-block" onClick={handleSubmit}>Rsvp</button>
