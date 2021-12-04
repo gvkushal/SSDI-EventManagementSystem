@@ -1,6 +1,7 @@
 package com.event.management.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/registration")
 @Api(value = "Registration", description = "Registration Apis", tags = { "Registration" })
+@CrossOrigin
 public class RegistrationController {
 
 	@Autowired

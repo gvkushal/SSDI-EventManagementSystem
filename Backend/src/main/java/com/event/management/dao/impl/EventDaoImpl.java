@@ -7,9 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import com.event.management.advice.InvalidInputException;
 import com.event.management.dao.EventDao;
-import com.event.management.model.Category;
 import com.event.management.model.Event;
 import com.event.management.repository.CategoryRepository;
 import com.event.management.repository.EventRepository;
@@ -36,12 +34,12 @@ public class EventDaoImpl implements EventDao {
 	@Override
 	public Event addOrUpdateEvent(Event event) {
 
-		if (event.getCategory() == null || event.getCategory().getCategoryId() <= 0)
+		/*if (event.getCategory() == null || event.getCategory().getCategoryId() <= 0)
 			throw new InvalidInputException("Event Category is not valid. please add valid category");
 		if (!categoryRepository.existsById(event.getCategory().getCategoryId()))
 			throw new InvalidInputException("Category with category id : " + event.getCategory().getCategoryId()
 					+ " not exist. please provide valid inputs");
-		event.setCategory(categoryRepository.findById(event.getCategory().getCategoryId()).get());
+		event.setCategory(categoryRepository.findById(event.getCategory().getCategoryId()).get());*/
 		if (event.getEventId() <= 0)
 			event.setRemainingCapacity(event.getCapactiy());
 		return repository.save(event);

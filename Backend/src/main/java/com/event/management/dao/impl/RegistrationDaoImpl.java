@@ -1,5 +1,6 @@
 package com.event.management.dao.impl;
 
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,8 +45,13 @@ public class RegistrationDaoImpl implements RegistrationDao {
 
 	@Override
 	public Registration getRegistrationById(int registrationId) {
-		if(!repository.existsById(registrationId))
+		if (!repository.existsById(registrationId))
 			return null;
 		return repository.findById(registrationId).get();
+	}
+
+	@Override
+	public List<Integer> getRegisteredUsers(int eventId) {
+		return null; //repository.getRegisteredUsers(eventId);
 	}
 }

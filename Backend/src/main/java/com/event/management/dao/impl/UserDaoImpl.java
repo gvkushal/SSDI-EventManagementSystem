@@ -1,5 +1,6 @@
 package com.event.management.dao.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
@@ -61,5 +62,10 @@ public class UserDaoImpl implements UsersDao {
 		if (!existing.getPassword().equals(credentials.getPassword()))
 			throw new InvalidInputException("Please enter the correct password");
 		return "Successfully Logged In";
+	}
+	
+	@Override
+	public List<Users> getUsersByIds(List<Integer> userIds) {
+		return  null; //repository.getUsersByIds(userIds);
 	}
 }
