@@ -1,7 +1,12 @@
 package com.event.management.controller;
 
+import java.util.List;
+
+import javax.websocket.server.PathParam;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,6 +38,12 @@ public class RegistrationController {
 	@ApiOperation(value = "Unsubscribe for an event", response = Registration.class)
 	public Registration unSubscribeEvent(@RequestParam int registrationId) {
 		return service.unSubscribeEvent(registrationId);
+	}
+
+	@GetMapping("/subscribed/{userId}")
+	@ApiOperation(value = "Get all user subscriptions by users id", response = Registration.class)
+	public List<Registration> getRegistrationsByUserId(@PathParam("userId") int userId) {
+		return service.getRegistrationsByUserId(userId);
 	}
 
 }

@@ -51,7 +51,13 @@ public class RegistrationDaoImpl implements RegistrationDao {
 	}
 
 	@Override
-	public List<Integer> getRegisteredUsers(int eventId) {
-		return null; //repository.getRegisteredUsers(eventId);
+	public List<Registration> getRegistrationsByEvent(int eventId) {
+		return repository.getRegisterationsByEvent(eventId);
 	}
+
+	@Override
+	public List<Registration> getRegistrationsByUserId(int userId) {
+		return repository.getRegistrationnsByUserId(userId);
+	}
+
 }

@@ -46,7 +46,7 @@ public class Registration {
 	private LocalDateTime updatedOn;
 
 	@Column(name = "registered")
-	private boolean registered;
+	private boolean notRegistered;
 
 	public int getRegistrationId() {
 		return registrationId;
@@ -88,12 +88,12 @@ public class Registration {
 		this.updatedOn = updatedOn;
 	}
 
-	public boolean isRegistered() {
-		return registered;
+	public boolean notRegistered() {
+		return notRegistered;
 	}
 
-	public void setRegistered(boolean registered) {
-		this.registered = registered;
+	public void setNotRegistered(boolean registered) {
+		this.notRegistered = registered;
 	}
 
 }
