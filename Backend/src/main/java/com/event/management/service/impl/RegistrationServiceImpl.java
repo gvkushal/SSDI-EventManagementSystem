@@ -1,5 +1,8 @@
 package com.event.management.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -9,6 +12,7 @@ import com.event.management.dao.RegistrationDao;
 import com.event.management.model.Event;
 import com.event.management.model.Registration;
 import com.event.management.model.Users;
+import com.event.management.service.EmailService;
 import com.event.management.service.EventService;
 import com.event.management.service.RegistrationService;
 import com.event.management.service.UsersService;
@@ -24,6 +28,9 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 	@Autowired
 	private UsersService userService;
+
+	@Autowired
+	private EmailService emailService;
 
 	@Override
 	public Registration subscribeEvent(int eventId, int usersId) {
@@ -47,6 +54,13 @@ public class RegistrationServiceImpl implements RegistrationService {
 		Registration registration = registrationDao.subscribeEvent(eventId, usersId);
 		event.setRemainingCapacity(event.getRemainingCapacity() - 1);
 		eventService.updateEvent(event);
+		StringBuilder body = new StringBuilder();
+		body.append("Hi ").append(user.getFirstName() + ",").append("\n").append("You have successfully registered to ")
+				.append(event.getEventName()).append(" event.");
+		String subject = event.getEventName() + " Registration";
+		List<String> emails = new ArrayList<String>();
+		emails.add(user.getEmail());
+		emailService.sendEmail(emails, body.toString(), subject);
 		return registration;
 	}
 
