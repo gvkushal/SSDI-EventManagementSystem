@@ -17,6 +17,20 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+
+
+/*
+{
+	  "capactiy": 20,
+	  "description": "boxing",
+	  "endTime": "2021-12-01 13:30",
+	  "eventName": "Boxing",
+	  "location": "UNCC",
+	  "remainingCapacity": 0,
+	  "startTime": "2021-12-01 11:30"
+	}*/
+
+
 @Entity(name = "event")
 @Table(name = "event")
 public class Event {
