@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.event.management.advice.InvalidInputException;
 import com.event.management.dao.UsersDao;
 import com.event.management.model.Users;
+import com.event.management.model.Login;
 import com.event.management.service.UsersService;
 
 @Service
@@ -45,5 +46,12 @@ public class UsersServiceImpl implements UsersService {
 		if (usersId <= 0)
 			throw new InvalidInputException("Please insert Valid userId");
 		return usersDao.getUserById(usersId);
+	}
+	
+	@Override
+	public String login(Login credentials) {
+		if(credentials == null || credentials.getEmail().isEmpty()|| credentials.getPassword().isEmpty())
+			throw new InvalidInputException("Username or Password cannot be empty..!!");
+		return usersDao.login(credentials);
 	}
 }
