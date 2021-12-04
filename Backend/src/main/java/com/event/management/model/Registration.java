@@ -9,14 +9,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity(name = "registration")
 @Table(name = "registration", uniqueConstraints = @UniqueConstraint(name = "uniqueUserIdEventIdPerRegistration", columnNames = {
@@ -29,22 +28,20 @@ public class Registration {
 	private int registrationId;
 
 	@ManyToOne
-//	@MapsId("userId")
 	@JoinColumn(name = "user_id")
 	private Users users;
 
 	@ManyToOne
-//	@MapsId("eventId")
 	@JoinColumn(name = "event_id")
 	private Event event;
 
+	@JsonIgnore
 	@CreationTimestamp
-	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
 	@Column(name = "created_on")
 	private LocalDateTime createdOn;
 
+	@JsonIgnore
 	@UpdateTimestamp
-	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
 	@Column(name = "updated_on")
 	private LocalDateTime updatedOn;
 
