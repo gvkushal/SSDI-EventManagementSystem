@@ -11,6 +11,7 @@ import com.event.management.advice.EventManagementException;
 import com.event.management.advice.InvalidInputException;
 import com.event.management.dao.UsersDao;
 import com.event.management.model.Users;
+import com.event.management.model.Login;
 import com.event.management.repository.UsersRepository;
 
 @Repository
@@ -50,5 +51,15 @@ public class UserDaoImpl implements UsersDao {
 		if (!userOpt.isPresent())
 			throw new InvalidInputException("User: "+usersId+"does not exist");
 		return userOpt.get();
+	}
+	
+	@Override
+	public String login(Login credentials) {
+		Users existing = repository.getUserByEmail(credentials.getEmail());
+		if (existing == null)
+			throw new InvalidInputException("User does not exist. Please login with correct credentials");
+		if (!existing.getPassword().equals(credentials.getPassword()))
+			throw new InvalidInputException("Please enter the correct password");
+		return "Successfully Logged In";
 	}
 }
