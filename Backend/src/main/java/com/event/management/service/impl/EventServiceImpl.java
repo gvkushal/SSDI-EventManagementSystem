@@ -8,14 +8,29 @@ import org.springframework.stereotype.Component;
 
 import com.event.management.advice.InvalidInputException;
 import com.event.management.dao.EventDao;
+import com.event.management.dao.RegistrationDao;
+import com.event.management.dao.UsersDao;
 import com.event.management.model.Event;
+import com.event.management.model.Users;
+import com.event.management.service.EmailService;
 import com.event.management.service.EventService;
+import com.event.management.service.RegistrationService;
+import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
 
 @Component
 public class EventServiceImpl implements EventService {
 
 	@Autowired
 	private EventDao eventDao;
+	
+	@Autowired
+	private EmailService emailService;
+	
+	@Autowired
+	private RegistrationDao registrationDao;
+	
+	@Autowired
+	private UsersDao usersDao;
 
 	public EventDao getEventDao() {
 		return eventDao;
@@ -77,7 +92,17 @@ public class EventServiceImpl implements EventService {
 			}
 
 		}
-		return eventDao.addOrUpdateEvent(event);
+		/*List<Integer> registeredUserIds = registrationDao.getRegisteredUsers(event.getEventId());
+		if(!registeredUserIds.isEmpty()) {
+			List<Users> registeredUsers = usersDao.getUsersByIds(registeredUserIds);
+			System.out.println("");
+		}*/
+		    
+		
+		
+		
+		Event updatedEvent = eventDao.addOrUpdateEvent(event);
+		return updatedEvent;
 
 	}
 

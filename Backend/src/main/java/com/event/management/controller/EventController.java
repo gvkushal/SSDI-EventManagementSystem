@@ -5,6 +5,7 @@ import java.util.List;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,7 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/event")
 @Api(value = "Event", description = "Event Apis", tags = { "Event" })
+@CrossOrigin
 public class EventController {
 
 	@Autowired

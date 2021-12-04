@@ -1,6 +1,9 @@
 package com.event.management.dao;
 
 import com.event.management.model.Users;
+
+import java.util.List;
+
 import com.event.management.model.Login;
 
 public interface UsersDao{
@@ -14,5 +17,7 @@ public interface UsersDao{
 	Users getUserById(int usersId);
 	
 	String login(Login credentials);
+
+	List<Users> getUsersByIds(List<Integer> userIds);
 
 }

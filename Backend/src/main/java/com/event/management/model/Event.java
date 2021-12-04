@@ -2,20 +2,18 @@ package com.event.management.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 
@@ -46,32 +44,32 @@ public class Event {
 	@Column(name = "description")
 	private String description;
 
-	@Column(name = "hosts")
-	private String hosts;
-
-	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
+	/*
+	 * @Column(name = "hosts") private String hosts;
+	 */
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	@Column(name = "event_start_time", nullable = false)
 	private LocalDateTime startTime;
 
-	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm")
 	@Column(name = "event_end_time", nullable = false)
 	private LocalDateTime endTime;
 
 	@Column(name = "capacity", nullable = false)
 	private int capactiy;
 
-	@Column(name = "created_by", nullable = false)
-	private int createdBy;
+	// @Column(name = "created_by", nullable = false)
+	// private int createdBy;
 
-	@Column(name = "contact_email")
-	private String pointOfCotactEmail;
+	// @Column(name = "contact_email")
+	// private String pointOfCotactEmail;
 
 	@Column(name = "locaiton")
 	private String location;
 
-	@ManyToOne(cascade = CascadeType.REMOVE)
-	@JoinColumn(name = "category")
-	private Category category;
+	// @ManyToOne(cascade = CascadeType.REMOVE)
+	// @JoinColumn(name = "category")
+	// private Category category;
 
 	/*
 	 * @Column(name = "category") private String category;
@@ -80,12 +78,12 @@ public class Event {
 	@Column(name = "remaining_capacity", nullable = false)
 	private int remainingCapacity;
 
-	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
+	@JsonIgnore
 	@Column(name = "created_on")
 	@CreationTimestamp
 	private LocalDateTime createdOn;
 
-	@JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss", shape = JsonFormat.Shape.STRING)
+	@JsonIgnore
 	@Column(name = "updated_on")
 	@UpdateTimestamp
 	private LocalDateTime updatedOn;
@@ -104,8 +102,9 @@ public class Event {
 	 * comments = new HashSet<>()
 	 */;
 
-	@Column(name = "registration_link")
-	private String registrationLink;
+	/*
+	 * @Column(name = "registration_link") private String registrationLink;
+	 */
 
 	/*
 	 * public void setRegistrations(Set<Registration> registrations) {
@@ -136,14 +135,11 @@ public class Event {
 		this.description = description;
 	}
 
-	public String getHosts() {
-		return hosts;
-	}
-
-	public void setHosts(String hosts) {
-		this.hosts = hosts;
-	}
-
+	/*
+	 * public String getHosts() { return hosts; }
+	 * 
+	 * public void setHosts(String hosts) { this.hosts = hosts; }
+	 */
 	public LocalDateTime getStartTime() {
 		return startTime;
 	}
@@ -168,21 +164,16 @@ public class Event {
 		this.capactiy = capactiy;
 	}
 
-	public int getCreatedBy() {
-		return createdBy;
-	}
-
-	public void setCreatedBy(int createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	public String getEventPointOfCotactEmail() {
-		return pointOfCotactEmail;
-	}
-
-	public void setEventPointOfCotactEmail(String eventPointOfCotactEmail) {
-		this.pointOfCotactEmail = eventPointOfCotactEmail;
-	}
+	/*
+	 * public int getCreatedBy() { return createdBy; }
+	 * 
+	 * public void setCreatedBy(int createdBy) { this.createdBy = createdBy; }
+	 * 
+	 * public String getEventPointOfCotactEmail() { return pointOfCotactEmail; }
+	 * 
+	 * public void setEventPointOfCotactEmail(String eventPointOfCotactEmail) {
+	 * this.pointOfCotactEmail = eventPointOfCotactEmail; }
+	 */
 
 	public String getLocation() {
 		return location;
@@ -215,30 +206,24 @@ public class Event {
 	public void setUpdatedOn(LocalDateTime updatedOn) {
 		this.updatedOn = updatedOn;
 	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
 	/*
+	 * public void setCategory(Category category) { this.category = category; }
+	 * 
+	 * 
 	 * public void setCategory(String category) { this.category = category; }
-	 */
-
-	/*
+	 * 
+	 * 
+	 * 
 	 * public void setComments(Set<Comment> comments) { this.comments =
 	 * comments; }
+	 * 
+	 * 
+	 * public String getRegistrationLink() { return registrationLink; }
+	 * 
+	 * public Category getCategory() { return category; }
+	 * 
+	 * public void setRegistrationLink(String registrationLink) {
+	 * this.registrationLink = registrationLink; }
 	 */
-
-	public String getRegistrationLink() {
-		return registrationLink;
-	}
-
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setRegistrationLink(String registrationLink) {
-		this.registrationLink = registrationLink;
-	}
 
 }
