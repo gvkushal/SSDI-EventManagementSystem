@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.event.management.advice.InvalidInputException;
 import com.event.management.model.Users;
+import com.event.management.model.Login;
 import com.event.management.service.UsersService;
 
 import io.swagger.annotations.Api;
@@ -50,6 +51,13 @@ public class UsersController {
 	@ApiOperation(value = "Update Password for a user")
 	public ResponseEntity<String> updatePassword(@RequestParam String email, @RequestParam String password) {
 		return new ResponseEntity<String>(usersService.updatePassword(email, password), HttpStatus.ACCEPTED);
+	}
+	
+	@PostMapping("/login")
+	@ApiOperation(value = "Login")
+	public ResponseEntity<String> login(@RequestBody Login loginCredentials) {
+		return new ResponseEntity<String>(usersService.login(loginCredentials), HttpStatus.ACCEPTED);
+
 	}
 
 }

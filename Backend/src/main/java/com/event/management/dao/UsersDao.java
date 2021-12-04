@@ -1,6 +1,7 @@
 package com.event.management.dao;
 
 import com.event.management.model.Users;
+import com.event.management.model.Login;
 
 public interface UsersDao{
 
@@ -11,4 +12,7 @@ public interface UsersDao{
 	String updatePassword(String email, String password);
 
 	Users getUserById(int usersId);
+	
+	String login(Login credentials);
+
 }
