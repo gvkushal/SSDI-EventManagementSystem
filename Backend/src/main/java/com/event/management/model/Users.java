@@ -28,9 +28,6 @@ public class Users {
 	@Column(name = "email", nullable = false)
 	private String email;
 
-	@Column(name = "phone")
-	private String phone;
-
 	/*
 	 * @JsonIgnore
 	 * 
@@ -83,14 +80,6 @@ public class Users {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
 	}
 
 	/*
