@@ -1,6 +1,7 @@
 package com.event.management.service.impl;
 
 import java.util.List;
+//import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import com.event.management.model.Users;
 import com.event.management.service.EmailService;
 import com.event.management.service.EventService;
 import com.event.management.service.RegistrationService;
-import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
+//import com.mysql.cj.protocol.x.SyncFlushDeflaterOutputStream;
 
 @Component
 public class EventServiceImpl implements EventService {

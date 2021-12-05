@@ -21,14 +21,30 @@ const UpdateEvent = () => {
 
         });
     }
+    //http://localhost:3000/admin/update-event/3
+
+
+//     capactiy: 0
+// description: "concert"
+// endTime: "2021-09-09 11:30"
+// eventId: 1
+// eventName: "Halloween"
+// location: "Charlotte, NC"
+// remainingCapacity: 0
+// startTime: "2021-09-09 11:30"
+
+
+
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.put(`http://localhost:3004/getevents/${id}`, {
+        console.log(evntDta);
+        axios.put(`http://localhost:8080/event/update`, {
+            eventId: evntDta.eventId,
             eventName: evntDta.eventName,
             description: evntDta.description,
-            eventStartTime: evntDta.eventStartTime,
-            eventEndTime: evntDta.eventEndTime,
+            startTime: evntDta.startTime,
+            endTime: evntDta.endTime,
             location: evntDta.location
         }).then(res => {
             if (res.status = 200) {
@@ -42,14 +58,14 @@ const UpdateEvent = () => {
         loadEvent();
     }, [])
 const loadEvent = async () =>{
- const result = await axios.get(`http://localhost:3004/getevents/${id}`);
+ const result = await axios.get(`http://localhost:8080/event/{eventId}?eventId=${id}`);
  setevntDta(result.data);
 }
     return (
         <div className="container">
              <div className="w-75 mx-auto shadow p-5">
         <form>
-            <h3>Update Event for {evntDta.id}</h3>
+            <h3>Update Event for {evntDta.eventId}</h3>
             <Link className="btn btn-primary" to="/admin">
             back to Home
           </Link>
@@ -70,12 +86,12 @@ const loadEvent = async () =>{
 
             <div className="form-group">
                 <label>Start Date</label>
-                <input type="text" className="form-control" name="eventStartTime" value={evntDta.eventStartTime} onChange={handleChange} />
+                <input type="text" className="form-control" name="eventStartTime" value={evntDta.startTime} onChange={handleChange} />
             </div>
 
             <div className="form-group">
                 <label>End Date</label>
-                <input type="text" className="form-control" name="eventEndTime" value={evntDta.eventEndTime} onChange={handleChange} />
+                <input type="text" className="form-control" name="eventEndTime" value={evntDta.endTime} onChange={handleChange} />
             </div>
             <button type="submit" className="btn btn-warning btn-block" onClick={handleSubmit} >
                 Update Event

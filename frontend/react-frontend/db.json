@@ -99,19 +99,10 @@
       "eventEndTime": "Park",
       "location": "Agata",
       "id": 9
-    },
-    {
-      "eventId": "1234",
-      "eventName": "Halloween ",
-      "description": "Party",
-      "eventStartTime": "12",
-      "eventEndTime": "13",
-      "location": "Charlotte, NC",
-      "id": 10
     }
   ],
   "evntRsvp": {
-    "evntID": "1",
+    "evntID": "2",
     "evntRsvpSub": "y"
   }
 }

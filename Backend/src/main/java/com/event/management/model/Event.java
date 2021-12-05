@@ -160,8 +160,9 @@ public class Event {
 		return capacity;
 	}
 
-	public void setCapacity(int capactiy) {
-		this.capacity = capactiy;
+
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
 	}
 
 	/*

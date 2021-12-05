@@ -18,7 +18,7 @@ const DashboardView = () => {
         loadEvent();
       }, []);
       const loadEvent = async () => {
-        const res = await axios.get(`http://localhost:3004/getevents/${id}`);
+        const res = await axios.get(`http://localhost:8080/event/all`);
         setDashboardView(res.data);
       };
 
