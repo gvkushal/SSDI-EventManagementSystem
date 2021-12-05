@@ -56,7 +56,7 @@ public class Event {
 	private LocalDateTime endTime;
 
 	@Column(name = "capacity", nullable = false)
-	private int capactiy;
+	private int capacity;
 
 	// @Column(name = "created_by", nullable = false)
 	// private int createdBy;
@@ -157,11 +157,11 @@ public class Event {
 	}
 
 	public int getCapactiy() {
-		return capactiy;
+		return capacity;
 	}
 
 	public void setCapactiy(int capactiy) {
-		this.capactiy = capactiy;
+		this.capacity = capactiy;
 	}
 
 	/*
