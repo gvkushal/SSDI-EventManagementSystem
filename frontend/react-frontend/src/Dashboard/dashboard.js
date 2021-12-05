@@ -6,7 +6,7 @@ import Navbar from '../nav/navbar';
 const Dashboard = () => {
     
   const get_all_events_url = 'http://localhost:8080/event/all';
-  const get_user_rsvp = 'http://localhost:3004/evntRsvp/';
+  const get_user_rsvp = 'http://localhost:8080/registration/subscribed/{userId}?userId=1';
   const [events, setEvents] = useState([]);
   const [eventsRsvp, setEventsRsvp] = useState([]);
 
@@ -18,7 +18,8 @@ const Dashboard = () => {
 
 const checkrsvp = async () =>{
     const response = await axios.get(get_user_rsvp);
-    console.log(" das " +response.data.evntRsvpSub);
+    console.log(" das " + response.data[0].event.eventId);
+    console.log(" das " + response.data[0].registered);
     setEventsRsvp(response.data);
 }
     const loadAllEvents = async () => {
@@ -29,10 +30,11 @@ const checkrsvp = async () =>{
 
     const Rsvp = () => {
       // const update_event_post_url = `http://localhost:3004/getevents/${id}`;
-      const rsvp_url='http://localhost:3004/getevents/${id}`';
+      const rsvp_url=`http://localhost:8080/event/{eventId}?eventId=${id}`;
 
        let history = useHistory();
-       
+       const {id} = useParams();
+
        const handleRsvp = (event) => {
            event.preventDefault();
            axios.post( rsvp_url)
@@ -64,7 +66,7 @@ const checkrsvp = async () =>{
                         {
                             events.map((evnt, index) => (
                                 <tr>
-                                    <th scope="row">{index + 1}</th>
+                                    <th scope="row">{evnt.eventId}</th>
                                     <td>{evnt.eventName}</td>
                                     <td>{evnt.description}</td>
                                     <td>{evnt.location}</td>
@@ -73,7 +75,7 @@ const checkrsvp = async () =>{
                                     <td>
                                         <Link className="btn btn-primary btn-sm" to={`/Dashboard/dashboardView/${evnt.eventId}`}>View</Link>
                                       {
-                                         eventsRsvp.evntRsvpSub=='y' && eventsRsvp.evntID === evnt.id?  <Link className="btn btn-outline-primary btn-sm" to={`/admin/rsvp/${evnt.id}`}>Subscribed</Link> :  <Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.id}`}>RSVP</Link> 
+                                         eventsRsvp.evntRsvpSub ==='y' && eventsRsvp.evntID === evnt.eventId?  <Link className="btn btn-outline-primary btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>Subscribed</Link> :  <Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link> 
                                       }
                                       
                                     </td>

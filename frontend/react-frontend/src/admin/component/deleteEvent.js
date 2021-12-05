@@ -25,7 +25,7 @@ const DeleteEvent = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.delete(`http://localhost:8080/event/delete/=${id}`).then(res => {
+        axios.delete(`http://localhost:8080/event/delete/{eventId}?eventId=${id}`).then(res => {
             if (res.status = 200) {
                 history.push("/admin");
             }

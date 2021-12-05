@@ -18,7 +18,7 @@ const DashboardView = () => {
         loadEvent();
       }, []);
       const loadEvent = async () => {
-        const res = await axios.get(`http://localhost:8080/event/all`);
+        const res = await axios.get(`http://localhost:8080/event/{eventId}?eventId=${id}`);
         setDashboardView(res.data);
       };
 
@@ -29,12 +29,12 @@ const DashboardView = () => {
           </Link>
           <hr />
           <ul className="list-group">
-            <li className="list-group-item active">Event id : {dashboardView.id}</li>
+            <li className="list-group-item active">Event id : {dashboardView.eventId}</li>
             <li className="list-group-item">Event Name: {dashboardView.eventName}</li>
             <li className="list-group-item">Description: {dashboardView.description}</li>
             <li className="list-group-item">Location: {dashboardView.location}</li>
-            <li className="list-group-item">Start Date: {dashboardView.eventStartTime}</li>
-            <li className="list-group-item">End Date: {dashboardView.eventEndTime}</li>
+            <li className="list-group-item">Start Date: {dashboardView.startTime}</li>
+            <li className="list-group-item">End Date: {dashboardView.endTime}</li>
           </ul>
          
         </div>

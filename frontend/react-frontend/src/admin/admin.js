@@ -41,7 +41,7 @@ const Admin = () => {
                         {
                             events.map((evnt, index) => (
                                 <tr>
-                                    <th scope="row">{index + 1}</th>
+                                    <th scope="row">{evnt.eventId}</th>
                                     <td>{evnt.eventName}</td>
                                     <td>{evnt.description}</td>
                                     <td>{evnt.location}</td>

@@ -29,9 +29,10 @@ const Rsvp = () =>{
     event.preventDefault();
     console.log(rsvp);
 
-    axios.put(`http://localhost:3004/evntRsvp`, {
-      evntID: id,
-      evntRsvpSub: rsvp.yesChoice
+    axios.post(`http://localhost:8080/registration/subscribe/event`, {
+      eventId: id,
+      usersId: 1,
+      subscribe: rsvp.yesChoice
       
   }).then(res => {
       if (res.status = 200) {
