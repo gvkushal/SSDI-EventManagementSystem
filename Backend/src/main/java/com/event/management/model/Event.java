@@ -160,6 +160,7 @@ public class Event {
 		return capacity;
 	}
 
+
 	public void setCapacity(int capacity) {
 		this.capacity = capacity;
 	}

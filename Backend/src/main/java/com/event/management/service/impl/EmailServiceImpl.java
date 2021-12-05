@@ -20,13 +20,13 @@ public class EmailServiceImpl implements EmailService{
 	private String fromAddress;
 
 	@Override
-	public void sendEmail(List<String> toEmails, String body, String subject) {
+	public void sendEmail(String toEmail, String body, String subject) {
 		SimpleMailMessage message = new SimpleMailMessage();
 
 		message.setFrom(fromAddress);
 		message.setText(body);
 		message.setSubject(subject);
-		message.setTo(toEmails.toArray(new String[toEmails.size()]));
+		message.setTo(toEmail);
 		mailSender.send(message);
 	}
 }

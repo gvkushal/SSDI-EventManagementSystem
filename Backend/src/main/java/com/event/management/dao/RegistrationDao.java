@@ -14,6 +14,8 @@ public interface RegistrationDao {
 
 	Registration unSubscribeEvent(Registration registration);
 
-	List<Integer> getRegisteredUsers(int eventId);
+	List<Registration> getRegistrationsByEvent(int eventId);
+
+	List<Registration> getRegistrationsByUserId(int userId);
 
 }
