@@ -8,12 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.event.management.model.Registration;
+import com.event.management.model.SubscribeRequest;
 import com.event.management.service.RegistrationService;
 
 import io.swagger.annotations.Api;
@@ -30,12 +30,12 @@ public class RegistrationController {
 
 	@PostMapping("/subscribe/event")
 	@ApiOperation(value = "Subscribe for an event", response = Registration.class)
-	public Registration subscribeEvent(@RequestParam int eventId, @RequestParam int usersId, @RequestParam String subscribe) {
-		
-		if (subscribe.equalsIgnoreCase("Y")){
-			return service.subscribeEvent(eventId, usersId);
+	public Registration subscribeEvent(@RequestBody SubscribeRequest request) {
+
+		if (request.getSubscribe().equalsIgnoreCase("Y")) {
+			return service.subscribeEvent(request.getEventId(), request.getUsersId());
 		} else {
-			service.unSubscribeEvent(eventId, usersId);
+			service.unSubscribeEvent(request.getEventId(), request.getUsersId());
 		}
 		return null;
 	}
