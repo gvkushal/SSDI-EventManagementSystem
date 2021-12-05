@@ -12,6 +12,7 @@ import com.event.management.dao.EventDao;
 import com.event.management.dao.RegistrationDao;
 import com.event.management.dao.UsersDao;
 import com.event.management.model.Event;
+import com.event.management.model.Registration;
 import com.event.management.model.Users;
 import com.event.management.service.EmailService;
 import com.event.management.service.EventService;
@@ -23,13 +24,13 @@ public class EventServiceImpl implements EventService {
 
 	@Autowired
 	private EventDao eventDao;
-	
+
 	@Autowired
 	private EmailService emailService;
-	
+
 	@Autowired
 	private RegistrationDao registrationDao;
-	
+
 	@Autowired
 	private UsersDao usersDao;
 
@@ -93,15 +94,22 @@ public class EventServiceImpl implements EventService {
 			}
 
 		}
-		/*List<Integer> registeredUserIds = registrationDao.getRegisteredUsers(event.getEventId());
-		if(!registeredUserIds.isEmpty()) {
-			List<Users> registeredUsers = usersDao.getUsersByIds(registeredUserIds);
-			System.out.println("");
-		}*/
-		    
-		
-		
-		
+
+		if (!event.getStartTime().isEqual(existing.get().getStartTime())) {
+			List<Registration> registerations = registrationDao.getRegistrationsByEvent(event.getEventId());
+			if (!registerations.isEmpty()) {
+				String body = new StringBuilder().append("Hi ").append("%s ,").append("\n").append("Event ")
+						.append(event.getEventName()).append(" has updated start time from ")
+						.append(existing.get().getStartTime()).append(" to ").append(event.getStartTime())
+						.append("\n \n").append("Thank You").toString();
+				String subject = event.getEventName() + " Registration";
+				for (Registration reg : registerations) {
+					String formatedBody = String.format(body, reg.getUsers().getFirstName());
+					emailService.sendEmail(reg.getUsers().getEmail(), formatedBody, subject);
+				}
+			}
+		}
+
 		Event updatedEvent = eventDao.addOrUpdateEvent(event);
 		return updatedEvent;
 
