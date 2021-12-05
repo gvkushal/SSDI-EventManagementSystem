@@ -29,13 +29,14 @@ public class RegistrationDaoImpl implements RegistrationDao {
 		Registration registration = new Registration();
 		registration.setEvent(eventService.getEventById(eventId));
 		registration.setUsers(userService.getUserById(usersId));
+		registration.setRegistered("Y");
 		repository.save(registration);
 		return registration;
 	}
 
 	@Override
-	public Registration unSubscribeEvent(Registration registration) {
-		return repository.save(registration);
+	public void unSubscribeEvent(Registration registration) {
+		repository.delete(registration);
 	}
 
 	@Override

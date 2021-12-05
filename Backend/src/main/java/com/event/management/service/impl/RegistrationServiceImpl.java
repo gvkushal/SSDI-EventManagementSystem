@@ -46,7 +46,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 			throw new InvalidInputException(usersId + " doesnot exist");
 
 		Registration existingRegistration = registrationDao.getRegistration(eventId, usersId);
-		if (existingRegistration != null && !existingRegistration.notRegistered())
+		if (existingRegistration != null && !existingRegistration.getRegistered().equalsIgnoreCase("Y"))
 			throw new InvalidInputException(user.getFirstName() + " already registered for " + event.getEventName());
 
 		if (event.getRemainingCapacity() == 0)
@@ -64,16 +64,15 @@ public class RegistrationServiceImpl implements RegistrationService {
 	}
 
 	@Override
-	public Registration unSubscribeEvent(int registrationId) {
-		Registration existing = registrationDao.getRegistrationById(registrationId);
+	public void unSubscribeEvent(int eventId, int usersId) {
+		Registration existing = registrationDao.getRegistration(eventId, usersId);
 		if (existing == null)
-			throw new InvalidInputException("No Registration exists with id: " + registrationId);
-		existing.setNotRegistered(true);
-		Registration registration = registrationDao.unSubscribeEvent(existing);
+			throw new InvalidInputException(
+					"No Registration exists for userId: " + usersId + " and eventid: " + eventId);
+		registrationDao.unSubscribeEvent(existing);
 		Event existingEvent = eventService.getEventById(existing.getEvent().getEventId());
 		existingEvent.setRemainingCapacity(existingEvent.getRemainingCapacity() + 1);
 		eventService.updateEvent(existingEvent);
-		return registration;
 	}
 
 	@Override
