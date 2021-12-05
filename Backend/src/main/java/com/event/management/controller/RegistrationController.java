@@ -30,15 +30,23 @@ public class RegistrationController {
 
 	@PostMapping("/subscribe/event")
 	@ApiOperation(value = "Subscribe for an event", response = Registration.class)
-	public Registration subscribeEvent(@RequestParam int eventId, @RequestParam int usersId) {
-		return service.subscribeEvent(eventId, usersId);
+	public Registration subscribeEvent(@RequestParam int eventId, @RequestParam int usersId, @RequestParam String subscribe) {
+		
+		if (subscribe.equalsIgnoreCase("Y")){
+			return service.subscribeEvent(eventId, usersId);
+		} else {
+			service.unSubscribeEvent(eventId, usersId);
+		}
+		return null;
 	}
 
-	@PutMapping("/unsubscribe/event")
-	@ApiOperation(value = "Unsubscribe for an event", response = Registration.class)
-	public Registration unSubscribeEvent(@RequestParam int registrationId) {
-		return service.unSubscribeEvent(registrationId);
-	}
+	/*
+	 * @PutMapping("/unsubscribe/event")
+	 * 
+	 * @ApiOperation(value = "Unsubscribe for an event", response =
+	 * Registration.class) public void unSubscribeEvent(@RequestParam int
+	 * registrationId) { service.unSubscribeEvent(registrationId); }
+	 */
 
 	@GetMapping("/subscribed/{userId}")
 	@ApiOperation(value = "Get all user subscriptions by users id", response = Registration.class)
