@@ -156,12 +156,12 @@ public class Event {
 		this.endTime = endTime;
 	}
 
-	public int getCapactiy() {
+	public int getCapacity() {
 		return capacity;
 	}
 
-	public void setCapactiy(int capactiy) {
-		this.capacity = capactiy;
+	public void setCapacity(int capacity) {
+		this.capacity = capacity;
 	}
 
 	/*
