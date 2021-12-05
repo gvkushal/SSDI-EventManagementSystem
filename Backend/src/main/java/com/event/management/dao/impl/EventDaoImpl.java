@@ -41,7 +41,7 @@ public class EventDaoImpl implements EventDao {
 					+ " not exist. please provide valid inputs");
 		event.setCategory(categoryRepository.findById(event.getCategory().getCategoryId()).get());*/
 		if (event.getEventId() <= 0)
-			event.setRemainingCapacity(event.getCapactiy());
+			event.setRemainingCapacity(event.getCapacity());
 		return repository.save(event);
 	}
 
