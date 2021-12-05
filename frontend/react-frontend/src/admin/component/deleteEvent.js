@@ -25,7 +25,7 @@ const DeleteEvent = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.delete(`http://localhost:3004/getevents/${id}`).then(res => {
+        axios.delete(`http://localhost:8080/event/delete/=${id}`).then(res => {
             if (res.status = 200) {
                 history.push("/admin");
             }
@@ -37,7 +37,7 @@ const DeleteEvent = () => {
         loadEvent();
     }, [])
 const loadEvent = async () =>{
- const result = await axios.get(`http://localhost:3004/getevents/${id}`);
+ const result = await axios.get(`http://localhost:8080/event/{eventId}?eventId=${id}`);
  setevntDta(result.data);
 }
     return (
@@ -46,7 +46,7 @@ const loadEvent = async () =>{
             <h3>Delete Event for {evntDta.eventId}</h3>
             <Link className="btn btn-primary" to="/admin">
             back to Home
-          </Link>
+            </Link>
             <div className="form-group">
                 <label>Event Title</label>
                 
@@ -65,12 +65,12 @@ const loadEvent = async () =>{
 
             <div className="form-group">
                 <label>Start Date</label>
-                <input type="text" className="form-control" name="eventStartTime" value={evntDta.eventStartTime} onChange={handleChange} />
+                <input type="text" className="form-control" name="eventStartTime" value={evntDta.startTime} onChange={handleChange} />
             </div>
 
             <div className="form-group">
                 <label>End Date</label>
-                <input type="text" className="form-control" name="eventEndTime" value={evntDta.eventEndTime} onChange={handleChange} />
+                <input type="text" className="form-control" name="eventEndTime" value={evntDta.endTime} onChange={handleChange} />
             </div>
             <button type="submit" className="btn btn-danger btn-block" onClick={handleSubmit} >
                 Delete Event
