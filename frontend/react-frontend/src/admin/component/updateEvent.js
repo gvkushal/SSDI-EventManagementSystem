@@ -23,13 +23,28 @@ const UpdateEvent = () => {
     }
     //http://localhost:3000/admin/update-event/3
 
+
+//     capactiy: 0
+// description: "concert"
+// endTime: "2021-09-09 11:30"
+// eventId: 1
+// eventName: "Halloween"
+// location: "Charlotte, NC"
+// remainingCapacity: 0
+// startTime: "2021-09-09 11:30"
+
+
+
+
     const handleSubmit = (event) => {
         event.preventDefault();
+        console.log(evntDta);
         axios.put(`http://localhost:8080/event/update`, {
+            eventId: evntDta.eventId,
             eventName: evntDta.eventName,
             description: evntDta.description,
-            eventStartTime: evntDta.startTime,
-            eventEndTime: evntDta.endTime,
+            startTime: evntDta.startTime,
+            endTime: evntDta.endTime,
             location: evntDta.location
         }).then(res => {
             if (res.status = 200) {
