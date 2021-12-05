@@ -80,15 +80,15 @@ public class EventServiceImpl implements EventService {
 		Optional<Event> existing = eventDao.getEventById(event.getEventId());
 		if (!existing.isPresent())
 			throw new InvalidInputException("No event with event id: " + event.getEventId());
-		if (existing.get().getCapactiy() != event.getCapactiy()) {
-			if (existing.get().getCapactiy() > event.getCapactiy()
-					&& event.getCapactiy() < event.getRemainingCapacity())
+		if (existing.get().getCapacity() != event.getCapacity()) {
+			if (existing.get().getCapacity() > event.getCapacity()
+					&& event.getCapacity() < event.getRemainingCapacity())
 				throw new InvalidInputException("Capacity of the " + event.getEventName()
 						+ " event cannot be reduced beyond remaining capacity");
 
-			if (existing.get().getCapactiy() < event.getCapactiy()) {
-				int diff = event.getCapactiy() - existing.get().getCapactiy();
-				event.setCapactiy(event.getCapactiy());
+			if (existing.get().getCapacity() < event.getCapacity()) {
+				int diff = event.getCapacity() - existing.get().getCapacity();
+				event.setCapacity(event.getCapacity());
 				event.setRemainingCapacity(event.getRemainingCapacity() + diff);
 			}
 
