@@ -3,11 +3,13 @@ import axios from 'axios';
 import { useHistory,Link } from "react-router-dom";
 
 const CreateEvent = () => {
-    const create_post_url = 'http://localhost:3004/getevents';
+    //const create_post_url = 'http://localhost:3004/getevents';
+    const create_post_url = 'http://localhost:8080/event/add';
     let history = useHistory();
     const [evntDta, setevntDta] = useState({
-        eventId: "",
+        eventId: 0,
         eventName: "",
+        capacity: 0,
         description: "",
         eventStartTime: "",
         eventEndTime: "",
@@ -24,14 +26,17 @@ const CreateEvent = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        axios.post(create_post_url, {
+        var body = {
             eventId: evntDta.eventId,
+            capacity: parseInt(evntDta.capacity, 10),
             eventName: evntDta.eventName,
             description: evntDta.description,
-            eventStartTime: evntDta.eventStartTime,
-            eventEndTime: evntDta.eventEndTime,
+            startTime: evntDta.eventStartTime,
+            endTime: evntDta.eventEndTime,
             location: evntDta.location
-        }).then(res => {
+        };
+        console.log(body);
+        axios.post(create_post_url,  body).then(res => {
             if (res.status = 200) {
                 history.push("/admin");
             }
@@ -71,13 +76,19 @@ const CreateEvent = () => {
 
             <div className="form-group">
                 <label>Start Date</label>
-                <input type="text" className="form-control" name="eventStartTime" value={evntDta.eventStartTime} onChange={handleChange} />
+                <input type="text" className="form-control" name="eventStartTime" value={evntDta.startTime} onChange={handleChange} />
             </div>
 
             <div className="form-group">
                 <label>End Date</label>
-                <input type="text" className="form-control" name="eventEndTime" value={evntDta.eventEndTime} onChange={handleChange} />
+                <input type="text" className="form-control" name="eventEndTime" value={evntDta.endTime} onChange={handleChange} />
             </div>
+
+            <div className="form-group">
+                <label>Capacity</label>
+                <input type="text" className="form-control" name="capacity" value={evntDta.capacity} onChange={handleChange} />
+            </div>
+
             <button type="submit" className="btn btn-primary btn-block" onClick={handleSubmit} >
                 Create Event
             </button>

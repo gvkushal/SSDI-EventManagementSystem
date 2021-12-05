@@ -26,6 +26,7 @@ function App() {
     <div className="App">
 
       <Switch>
+        
         <Route exact path='/' component={SignIn} />
         <Route exact path='/Dashboard' component={Dashboard} />
         <Route exact path="/sign-in" component={SignIn} />

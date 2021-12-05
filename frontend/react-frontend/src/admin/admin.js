@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Link, useHistory } from "react-router-dom";
 
 const Admin = () => {
-    const get_all_events_url = 'http://localhost:3004/getevents';
+    const get_all_events_url = 'http://localhost:8080/event/all';
     const [events, setEvents] = useState([]);
 
 
@@ -45,12 +45,12 @@ const Admin = () => {
                                     <td>{evnt.eventName}</td>
                                     <td>{evnt.description}</td>
                                     <td>{evnt.location}</td>
-                                    <td>{evnt.eventStartTime}</td>
-                                    <td>{evnt.eventEndTime}</td>
+                                    <td>{evnt.startTime}</td>
+                                    <td>{evnt.endTime}</td>
                                     <td>
-                                        <Link className="btn btn-primary btn-sm" to={`/admin/view-event/${evnt.id}`}>View</Link>
-                                        <Link className="btn btn-outline-primary btn-sm" to={`/admin/update-event/${evnt.id}`}>Edit</Link>
-                                        <Link className="btn btn-danger btn-sm" to={`/admin/delete-event/${evnt.id}`}>Delete</Link>
+                                        <Link className="btn btn-primary btn-sm" to={`/admin/view-event/${evnt.eventId}`}>View</Link>
+                                        <Link className="btn btn-outline-primary btn-sm" to={`/admin/update-event/${evnt.eventId}`}>Edit</Link>
+                                        <Link className="btn btn-danger btn-sm" to={`/admin/delete-event/${evnt.eventId}`}>Delete</Link>
                                     </td>
                                 </tr>
                             ))

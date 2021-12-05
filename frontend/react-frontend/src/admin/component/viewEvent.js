@@ -18,7 +18,8 @@ const ViewEvent = () => {
         loadEvent();
       }, []);
       const loadEvent = async () => {
-        const res = await axios.get(`http://localhost:3004/getevents/${id}`);
+        //const res = await axios.get(`http://localhost:3004/getevents/${id}`);
+        const res = await axios.get(`http://localhost:8080/event/{eventId}?eventId=${id}`);
         setViewEvent(res.data);
       };
 
@@ -33,8 +34,8 @@ const ViewEvent = () => {
             <li className="list-group-item">Event Name: {viewEvent.eventName}</li>
             <li className="list-group-item">Description: {viewEvent.description}</li>
             <li className="list-group-item">Location: {viewEvent.location}</li>
-            <li className="list-group-item">Start Date: {viewEvent.eventStartTime}</li>
-            <li className="list-group-item">End Date: {viewEvent.eventEndTime}</li>
+            <li className="list-group-item">Start Date: {viewEvent.startTime}</li>
+            <li className="list-group-item">End Date: {viewEvent.endTime}</li>
           </ul>
          
         </div>
