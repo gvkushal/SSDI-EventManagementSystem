@@ -12,7 +12,7 @@ public interface RegistrationDao {
 
 	Registration getRegistrationById(int registrationId);
 
-	Registration unSubscribeEvent(Registration registration);
+	void unSubscribeEvent(Registration registration);
 
 	List<Registration> getRegistrationsByEvent(int eventId);
 
