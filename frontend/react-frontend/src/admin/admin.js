@@ -24,7 +24,7 @@ const Admin = () => {
     return (
         <div className="container">
       <Link className="btn btn-primary" to="/admin/create-event">Create Event</Link>
-
+      <Link className="btn btn-info" to="/Dashboard">Dashboard</Link>
                 <table class="table border">
                     <thead class="thead-dark">
                         <tr>

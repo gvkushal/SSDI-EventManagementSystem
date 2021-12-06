@@ -17,10 +17,18 @@ const Dashboard = () => {
     }, []);
 
 const checkrsvp = async () =>{
+    const array = [];
     const response = await axios.get(get_user_rsvp);
     console.log(" das " + response.data[0].event.eventId);
     console.log(" das " + response.data[0].registered);
-    setEventsRsvp(response.data);
+    
+    for(var i = 0; i < response.data.length; i++){
+        //setEventsRsvp(response.data[i]);
+        array.push(response.data[i]);
+    }
+    console.log(array);
+    setEventsRsvp(array);
+
 }
     const loadAllEvents = async () => {
         const response = await axios.get(get_all_events_url);
@@ -28,22 +36,22 @@ const checkrsvp = async () =>{
         setEvents(response.data);
     }
 
-    const Rsvp = () => {
+const Rsvp = () => {
       // const update_event_post_url = `http://localhost:3004/getevents/${id}`;
-      const rsvp_url=`http://localhost:8080/event/{eventId}?eventId=${id}`;
+    const rsvp_url=`http://localhost:8080/event/{eventId}?eventId=${id}`;
 
-       let history = useHistory();
-       const {id} = useParams();
+    let history = useHistory();
+    const {id} = useParams();
 
-       const handleRsvp = (event) => {
-           event.preventDefault();
-           axios.post( rsvp_url)
+    const handleRsvp = (event) => {
+       event.preventDefault();
+       axios.post( rsvp_url)
             
-          .then(res=> {
-            history.push("/Rsvp");
-       });
+        .then(res=> {
+        history.push("/Rsvp");
+    });
 
-       }
+    }
     
   }
     return (
@@ -75,7 +83,26 @@ const checkrsvp = async () =>{
                                     <td>
                                         <Link className="btn btn-primary btn-sm" to={`/Dashboard/dashboardView/${evnt.eventId}`}>View</Link>
                                       {
-                                         eventsRsvp.evntRsvpSub ==='y' && eventsRsvp.evntID === evnt.eventId?  <Link className="btn btn-outline-primary btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>Subscribed</Link> :  <Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link> 
+                                        eventsRsvp.map((ev, idx) => 
+                                        {   
+                                            console.log(idx);
+                                            if(ev.registered === 'Y' && ev.event.eventId === evnt.eventId ){
+                                                return <Link className="btn btn-outline-primary btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>Subscribed</Link> 
+                                                
+                                            }
+                                            else{
+                                                return null;
+                                                //return <Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link> 
+                                            }
+                                            //return <Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link> 
+                                            //ev.registered === 'Y' && ev.event.eventId === evnt.eventId?  
+                                            //<Link className="btn btn-outline-primary btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>Subscribed</Link> : <div>Error</div>
+                                            //<Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link> 
+                                        }, 
+                                            //<Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link> 
+                                        )
+                                            //<Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link> 
+                                        //eventsRsvp.registered ==='Y' && eventsRsvp.event.eventId === evnt.eventId?  <Link className="btn btn-outline-primary btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>Subscribed</Link> :  <Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link> 
                                       }
                                       
                                     </td>

@@ -92,6 +92,7 @@ const CreateEvent = () => {
             <button type="submit" className="btn btn-primary btn-block" onClick={handleSubmit} >
                 Create Event
             </button>
+
         </form>
         </div>
     );
