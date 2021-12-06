@@ -1,5 +1,6 @@
 package com.event.management.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.websocket.server.PathParam;
@@ -49,9 +50,14 @@ public class RegistrationController {
 	 */
 
 	@GetMapping("/subscribed/{userId}")
-	@ApiOperation(value = "Get all user subscriptions by users id", response = Registration.class)
-	public List<Registration> getRegistrationsByUserId(@PathParam("userId") int userId) {
-		return service.getRegistrationsByUserId(userId);
+	@ApiOperation(value = "Get all user subscriptions by users id", response = ArrayList.class)
+	public List<Integer> getRegistrationsByUserId(@PathParam("userId") int userId) {
+		List<Registration> regs = service.getRegistrationsByUserId(userId);
+		List<Integer> eventIds = new ArrayList<>();
+		for (Registration reg : regs) {
+			eventIds.add(reg.getEvent().getEventId());
+		}
+		return eventIds;
 	}
 
 }
