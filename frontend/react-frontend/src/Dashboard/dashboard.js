@@ -19,8 +19,8 @@ const Dashboard = () => {
 const checkrsvp = async () =>{
     const array = [];
     const response = await axios.get(get_user_rsvp);
-    console.log(" das " + response.data[0].event.eventId);
-    console.log(" das " + response.data[0].registered);
+    //console.log(" das " + response.data[0].event.eventId);
+    //console.log(" das " + response.data[0].registered);
     
     for(var i = 0; i < response.data.length; i++){
         //setEventsRsvp(response.data[i]);
@@ -82,28 +82,25 @@ const Rsvp = () => {
                                     <td>{evnt.endTime}</td>
                                     <td>
                                         <Link className="btn btn-primary btn-sm" to={`/Dashboard/dashboardView/${evnt.eventId}`}>View</Link>
-                                      {
-                                        eventsRsvp.map((ev, idx) => 
-                                        {   
-                                            console.log(idx);
-                                            if(ev.registered === 'Y' && ev.event.eventId === evnt.eventId ){
-                                                return <Link className="btn btn-outline-primary btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>Subscribed</Link> 
+                                    {
+                                        
+                                           
+                                            
+                                            evnt.subscribe === 'Y' && evnt.eventId === evnt.eventId?
+                                                <Link className="btn btn-outline-primary btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>Subscribed</Link>:
                                                 
-                                            }
-                                            else{
-                                                return null;
-                                                //return <Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link> 
-                                            }
+                                                <Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link> 
+                                            
                                             //return <Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link> 
                                             //ev.registered === 'Y' && ev.event.eventId === evnt.eventId?  
                                             //<Link className="btn btn-outline-primary btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>Subscribed</Link> : <div>Error</div>
                                             //<Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link> 
-                                        }, 
+                                     
                                             //<Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link> 
-                                        )
+                                        
                                             //<Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link> 
                                         //eventsRsvp.registered ==='Y' && eventsRsvp.event.eventId === evnt.eventId?  <Link className="btn btn-outline-primary btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>Subscribed</Link> :  <Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link> 
-                                      }
+                                    }
                                       
                                     </td>
                                 </tr>
