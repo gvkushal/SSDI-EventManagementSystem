@@ -11,7 +11,9 @@ const ViewEvent = () => {
         description: "",
         eventStartTime: "",
         eventEndTime: "",
-        location:""
+        location:"",
+        capacity: "",
+        remainingCapacity: ""
       });
       const { id } = useParams();
       useEffect(() => {
@@ -30,12 +32,14 @@ const ViewEvent = () => {
           </Link>
           <hr />
           <ul className="list-group">
-            <li className="list-group-item active">Event id : {viewEvent.id}</li>
+            <li className="list-group-item active">Event id : {viewEvent.eventId}</li>
             <li className="list-group-item">Event Name: {viewEvent.eventName}</li>
             <li className="list-group-item">Description: {viewEvent.description}</li>
             <li className="list-group-item">Location: {viewEvent.location}</li>
             <li className="list-group-item">Start Date: {viewEvent.startTime}</li>
             <li className="list-group-item">End Date: {viewEvent.endTime}</li>
+            <li className="list-group-item">Capacity: {viewEvent.capacity}</li>
+            <li className="list-group-item">Remaining Capacity: {viewEvent.remainingCapacity}</li>
           </ul>
          
         </div>

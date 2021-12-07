@@ -33,8 +33,10 @@ const Signin = () => {
     }
 
     return (
+        
         <div className="container">
             <div className="auth-wrapper">
+            <h3>Welcome to the Events Management Application</h3>
                 <div className="auth-inner">
                     <form>
                         <h3>Sign In</h3>

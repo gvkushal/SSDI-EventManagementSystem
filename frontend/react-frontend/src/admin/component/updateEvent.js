@@ -11,7 +11,8 @@ const UpdateEvent = () => {
         description: "",
         eventStartTime: "",
         eventEndTime: "",
-        location: ""
+        location: "",
+        capacity: ""
 
     });
     const handleChange = (event) => {
@@ -31,7 +32,8 @@ const UpdateEvent = () => {
             description: evntDta.description,
             startTime: evntDta.startTime,
             endTime: evntDta.endTime,
-            location: evntDta.location
+            location: evntDta.location,
+            capacity: evntDta.capacity,
         }).then(res => {
             if (res.status = 200) {
                 history.push("/admin");
@@ -43,9 +45,9 @@ const UpdateEvent = () => {
     useEffect(() => {
         loadEvent();
     }, [])
-const loadEvent = async () =>{
- const result = await axios.get(`http://localhost:8080/event/{eventId}?eventId=${id}`);
- setevntDta(result.data);
+    const loadEvent = async () =>{
+    const result = await axios.get(`http://localhost:8080/event/{eventId}?eventId=${id}`);
+    setevntDta(result.data);
 }
     return (
         <div className="container">
@@ -53,8 +55,8 @@ const loadEvent = async () =>{
         <form>
             <h3>Update Event for {evntDta.eventId}</h3>
             <Link className="btn btn-primary" to="/admin">
-            back to Home
-          </Link>
+                back to Home
+            </Link>
             <div className="form-group">
                 <label>Event Title</label>
                 <input type="text" className="form-control" name="eventName" value={evntDta.eventName} onChange={handleChange} />
@@ -79,6 +81,12 @@ const loadEvent = async () =>{
                 <label>End Date</label>
                 <input type="text" className="form-control" name="eventEndTime" value={evntDta.endTime} onChange={handleChange} />
             </div>
+
+            <div className="form-group">
+                <label>Capacity</label>
+                <input type="text" className="form-control" name="capacity" value={evntDta.capacity} onChange={handleChange} />
+            </div>
+
             <button type="submit" className="btn btn-warning btn-block" onClick={handleSubmit} >
                 Update Event
             </button>

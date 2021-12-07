@@ -11,7 +11,9 @@ const DashboardView = () => {
         description: "",
         eventStartTime: "",
         eventEndTime: "",
-        location:""
+        location:"",
+        capacity: "",
+        remainingCapacity:""
       });
       const { id } = useParams();
       useEffect(() => {
@@ -35,6 +37,8 @@ const DashboardView = () => {
             <li className="list-group-item">Location: {dashboardView.location}</li>
             <li className="list-group-item">Start Date: {dashboardView.startTime}</li>
             <li className="list-group-item">End Date: {dashboardView.endTime}</li>
+            <li className="list-group-item">Capacity: {dashboardView.capacity}</li>
+            <li className="list-group-item">Remaining Capacity: {dashboardView.remainingCapacity}</li>
           </ul>
          
         </div>

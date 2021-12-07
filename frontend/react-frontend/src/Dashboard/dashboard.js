@@ -89,17 +89,8 @@ const Rsvp = () => {
                                             evnt.subscribe === 'Y' && evnt.eventId === evnt.eventId?
                                                 <Link className="btn btn-outline-primary btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>Subscribed</Link>:
                                                 
-                                                <Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link> 
-                                            
-                                            //return <Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link> 
-                                            //ev.registered === 'Y' && ev.event.eventId === evnt.eventId?  
-                                            //<Link className="btn btn-outline-primary btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>Subscribed</Link> : <div>Error</div>
-                                            //<Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link> 
-                                     
-                                            //<Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link> 
-                                        
-                                            //<Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link> 
-                                        //eventsRsvp.registered ==='Y' && eventsRsvp.event.eventId === evnt.eventId?  <Link className="btn btn-outline-primary btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>Subscribed</Link> :  <Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link> 
+                                                <Link className="btn btn-outline-danger btn-sm" to={`/admin/rsvp/${evnt.eventId}`}>RSVP</Link>                                             
+
                                     }
                                       
                                     </td>
