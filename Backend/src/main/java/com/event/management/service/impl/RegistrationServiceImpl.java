@@ -54,6 +54,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 
 		Registration registration = registrationDao.subscribeEvent(eventId, usersId);
 		event.setRemainingCapacity(event.getRemainingCapacity() - 1);
+		event.setSubscribe("Y");
 		eventService.updateEvent(event);
 		StringBuilder body = new StringBuilder();
 		body.append("Hi ").append(user.getFirstName() + ",").append("\n").append("You have successfully registered to ")
@@ -72,6 +73,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 		registrationDao.unSubscribeEvent(existing);
 		Event existingEvent = eventService.getEventById(existing.getEvent().getEventId());
 		existingEvent.setRemainingCapacity(existingEvent.getRemainingCapacity() + 1);
+		existingEvent.setSubscribe("N");
 		eventService.updateEvent(existingEvent);
 	}
 
