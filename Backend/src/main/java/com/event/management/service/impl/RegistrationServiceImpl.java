@@ -46,7 +46,7 @@ public class RegistrationServiceImpl implements RegistrationService {
 			throw new InvalidInputException(usersId + " doesnot exist");
 
 		Registration existingRegistration = registrationDao.getRegistration(eventId, usersId);
-		if (existingRegistration != null && !existingRegistration.getRegistered().equalsIgnoreCase("Y"))
+		if (existingRegistration != null && existingRegistration.getRegistered().equalsIgnoreCase("Y"))
 			throw new InvalidInputException(user.getFirstName() + " already registered for " + event.getEventName());
 
 		if (event.getRemainingCapacity() == 0)
