@@ -21,20 +21,6 @@ const UpdateEvent = () => {
 
         });
     }
-    //http://localhost:3000/admin/update-event/3
-
-
-//     capactiy: 0
-// description: "concert"
-// endTime: "2021-09-09 11:30"
-// eventId: 1
-// eventName: "Halloween"
-// location: "Charlotte, NC"
-// remainingCapacity: 0
-// startTime: "2021-09-09 11:30"
-
-
-
 
     const handleSubmit = (event) => {
         event.preventDefault();
