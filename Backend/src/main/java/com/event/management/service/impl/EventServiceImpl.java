@@ -90,7 +90,7 @@ public class EventServiceImpl implements EventService {
 			if (existing.get().getCapacity() < event.getCapacity()) {
 				int diff = event.getCapacity() - existing.get().getCapacity();
 				event.setCapacity(event.getCapacity());
-				event.setRemainingCapacity(event.getRemainingCapacity() + diff);
+				event.setRemainingCapacity(existing.get().getRemainingCapacity() + diff);
 			}
 
 		}
