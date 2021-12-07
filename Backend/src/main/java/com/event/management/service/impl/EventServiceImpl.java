@@ -95,12 +95,12 @@ public class EventServiceImpl implements EventService {
 
 		}
 
-		if (!event.getStartTime().isEqual(existing.get().getStartTime())) {
+		if (!event.getLocation().equals(existing.get().getLocation())) {
 			List<Registration> registerations = registrationDao.getRegistrationsByEvent(event.getEventId());
 			if (!registerations.isEmpty()) {
 				String body = new StringBuilder().append("Hi ").append("%s ,").append("\n").append("Event ")
-						.append(event.getEventName()).append(" has updated start time from ")
-						.append(existing.get().getStartTime()).append(" to ").append(event.getStartTime())
+						.append(event.getEventName()).append(" has updated location from ")
+						.append(existing.get().getLocation()).append(" to ").append(event.getLocation())
 						.append("\n \n").append("Thank You").toString();
 				String subject = event.getEventName() + " Registration";
 				for (Registration reg : registerations) {
