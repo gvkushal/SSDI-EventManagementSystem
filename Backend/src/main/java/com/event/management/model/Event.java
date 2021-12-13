@@ -9,7 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -32,6 +34,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity(name = "event")
 @Table(name = "event")
 public class Event {
+
+	public String getSubscribe() {
+		return subscribe;
+	}
+
+	public void setSubscribe(String subscribe) {
+		this.subscribe = subscribe;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,6 +76,10 @@ public class Event {
 
 	@Column(name = "locaiton")
 	private String location;
+	
+	
+	@Column(name = "subscribe", columnDefinition = "VARCHAR(3) DEFAULT 'N'")
+	private String subscribe;
 
 	// @ManyToOne(cascade = CascadeType.REMOVE)
 	// @JoinColumn(name = "category")
